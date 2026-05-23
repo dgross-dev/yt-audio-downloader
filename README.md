@@ -1,143 +1,143 @@
 # YouTube Audio Downloader
 
-GUI zum Herunterladen von YouTube-Videos und ‑Playlists als
-**FLAC (24 Bit)** oder **MP3 (320 kbps)**. Windows + Linux, deutsch + englisch.
+GUI for downloading YouTube videos and playlists as
+**FLAC (24-bit)** or **MP3 (320 kbps)**. Windows + Linux, German + English UI.
 
-**Autor:** David Christopher Groß · **Lizenz:** MIT (siehe `LICENSE`)
+**Author:** David Christopher Groß · **License:** MIT (see `LICENSE`)
 
 ---
 
-## ⚠ Wichtiger Hinweis zur Audioqualität
+## ⚠ Important note on audio quality
 
-YouTube liefert Audio grundsätzlich **verlustbehaftet** aus — typischerweise
-Opus mit ca. **160 kbps** (premium) oder AAC mit ca. **128 kbps**. Eine echte
-Hi-Res-Quelle existiert dort **nicht**.
+YouTube delivers audio in a **lossy** format by default — typically
+Opus at around **160 kbps** (premium) or AAC at around **128 kbps**.
+A true Hi-Res source does **not** exist on YouTube.
 
-Was das Programm macht: Es zieht den besten verfügbaren Stream und packt
-ihn verlustfrei in einen 24-Bit-FLAC-Container. Damit geht ab dem Download
-nichts mehr verloren — die ursprüngliche YouTube-Qualität bleibt aber die
-Obergrenze. Es ist nicht dasselbe wie 24-Bit-Studio-Master.
+What this program does: it grabs the best available stream and packs
+it losslessly into a 24-bit FLAC container. From the download onward,
+nothing else is lost — but the original YouTube quality remains the
+upper limit. It is not the same as a 24-bit studio master.
 
-| Format | Verlustfrei ab Download? | Echte Studio-Qualität? |
+| Format | Lossless from download? | True studio quality? |
 |---|---|---|
-| FLAC (24 Bit) | Ja | Nein — Quelle ist lossy |
-| MP3 (320 kbps) | Nein, erneut komprimiert | Nein |
+| FLAC (24-bit) | Yes | No — source is lossy |
+| MP3 (320 kbps) | No, re-encoded | No |
 
-Wer echte Hi-Res-Qualität will: **Qobuz, Tidal Max, Bandcamp** o. Ä.
-Für YouTube-Inhalte (Bootlegs, eigene Uploads, Demos, Mixe) ist FLAC 24-Bit
-hier die qualitativ beste Lösung.
-
----
-
-## Funktionen
-
-- Einzelne YouTube-Videos und komplette Playlists
-- FLAC verlustfrei (24-Bit-Container) oder MP3 320 kbps CBR
-- Cover wird ins Audio eingebettet und zusätzlich als `cover.jpg` + `folder.jpg` im Zielordner abgelegt
-- Keine WebP/PNG-Reste — Thumbnails werden zu JPG konvertiert und nach dem Embedden aufgeräumt
-- Metadaten (Titel, Künstler, …) werden gesetzt
-- Standard-Zielordner: `<Downloads>/YT-Music`
-- **ffmpeg ist in der EXE gebündelt** — keine externe Installation nötig
-- Automatischer yt-dlp-Update-Check beim Programmstart
-- Deutsche und englische Bedienoberfläche, in der App umschaltbar
-- Playlist-Tracks landen in einem Unterordner mit Playlist-Titel, durchnummeriert
-- Live-Fortschritt, Abbrechen jederzeit möglich
+If you want real Hi-Res quality: **Qobuz, Tidal Max, Bandcamp** or similar.
+For YouTube content (bootlegs, your own uploads, demos, mixes), FLAC 24-bit
+is the best quality this tool can offer.
 
 ---
 
-## Self-contained EXE — was wirklich enthalten ist
+## Features
 
-Mit dem mitgelieferten `build.bat` entstehen EXEs, die **alles** beinhalten,
-was zum Betrieb nötig ist:
-
-- ✔ Python-Laufzeitumgebung
-- ✔ alle Python-Bibliotheken (yt-dlp, customtkinter, Pillow, urllib, …)
-- ✔ **ffmpeg** (LGPL-Build von BtbN, ca. 80 MB)
-- ✔ App-Icon, Übersetzungen, Logo (programmatisch erzeugt)
-
-**Größe der EXE:** ca. **100–130 MB** (mit gebündeltem ffmpeg).
-Ohne ffmpeg-Bundle wären es ~35 MB.
-
-Auf dem Zielrechner wird **nichts** zusätzlich gebraucht außer:
-- Internetzugriff (für yt-dlp-Downloads und den Update-Check)
-- Schreibrechte auf `%LOCALAPPDATA%` (Standard auf jedem Windows-User-Profil)
-
-Beim ersten Start zeigt Windows Defender SmartScreen ggf. eine Warnung
-(„Unbekannter Herausgeber") — normal bei selbst gebauten EXEs ohne Code-Signing.
+- Single YouTube videos and complete playlists
+- Lossless FLAC (24-bit container) or MP3 320 kbps CBR
+- Cover is embedded into the audio file and additionally stored as `cover.jpg` + `folder.jpg` in the target folder
+- No leftover WebP/PNG files — thumbnails are converted to JPG and cleaned up after embedding
+- Metadata (title, artist, …) is set automatically
+- Default target folder: `<Downloads>/YT-Music`
+- **ffmpeg is bundled into the EXE** — no external installation needed
+- Automatic yt-dlp update check on startup
+- German and English UI, switchable inside the app
+- Playlist tracks land in a subfolder named after the playlist, numbered sequentially
+- Live progress display, can be cancelled at any time
 
 ---
 
-## Standard-Download-Pfad
+## Self-contained EXE — what's actually included
 
-| Plattform | Pfad |
+When built with `build.bat`, the resulting EXEs contain **everything**
+needed to run the program:
+
+- ✔ Python runtime
+- ✔ All Python libraries (yt-dlp, customtkinter, Pillow, urllib, …)
+- ✔ **ffmpeg** (LGPL build by BtbN, around 80 MB)
+- ✔ App icon, translations, logo (generated programmatically)
+
+**EXE size:** approximately **100–130 MB** (with bundled ffmpeg).
+Without the ffmpeg bundle it would be around 35 MB.
+
+On the target machine, **nothing else** is required except:
+- Internet access (for yt-dlp downloads and the update check)
+- Write permissions on `%LOCALAPPDATA%` (standard on any Windows user profile)
+
+On first launch, Windows Defender SmartScreen may show a warning
+("Unknown publisher") — this is normal for self-built EXEs without code signing.
+
+---
+
+## Default download path
+
+| Platform | Path |
 |---|---|
-| Windows | `%USERPROFILE%\Downloads\YT-Music` (auch bei umgeleitetem Downloads-Ordner korrekt) |
-| Linux | `~/Downloads/YT-Music` (bzw. `$XDG_DOWNLOAD_DIR/YT-Music`) |
+| Windows | `%USERPROFILE%\Downloads\YT-Music` (also handles redirected Downloads folders correctly) |
+| Linux | `~/Downloads/YT-Music` (or `$XDG_DOWNLOAD_DIR/YT-Music`) |
 | macOS | `~/Downloads/YT-Music` |
 
-Der Pfad lässt sich in der App pro Download individuell ändern.
+The path can be changed in the app on a per-download basis.
 
 ---
 
-## Mehrsprachigkeit
+## Multilingual UI
 
-Zwei vorkonfigurierte Builds:
+Two pre-configured builds:
 
-| EXE | Default-Sprache |
+| EXE | Default language |
 |---|---|
-| `YouTubeAudioDownloader-DE.exe` | Deutsch |
-| `YouTubeAudioDownloader-EN.exe` | Englisch |
+| `YouTubeAudioDownloader-DE.exe` | German |
+| `YouTubeAudioDownloader-EN.exe` | English |
 
-Die Sprache kann in der App jederzeit über **„Über" → „Sprache"** umgeschaltet
-werden. Die Auswahl wird pro Benutzer in `%LOCALAPPDATA%\YouTubeAudioDownloader\config.json`
-gespeichert.
-
----
-
-## yt-dlp Auto-Update
-
-YouTube ändert regelmäßig interne API-Strukturen — yt-dlp muss daher auch
-regelmäßig aktualisiert werden, sonst brechen Downloads.
-
-- **Erkennung:** Beim Start vergleicht die App die geladene yt-dlp-Version mit der neuesten auf PyPI
-- **Installation:** Auf Bestätigung wird das aktualisierte yt-dlp ins User-Verzeichnis entpackt; beim nächsten Programmstart automatisch geladen
-- **Funktioniert in beiden Distributionen** (Python-Modus und EXE)
-- **Keine Admin-Rechte nötig**
-- **Toggle im Über-Dialog**
-- **Rollback** über „Override entfernen"
+The language can be switched at any time inside the app via
+**"About" → "Language"**. The selection is stored per user in
+`%LOCALAPPDATA%\YouTubeAudioDownloader\config.json`.
 
 ---
 
-## EXE bauen
+## yt-dlp auto-update
+
+YouTube regularly changes its internal API — yt-dlp therefore needs
+to be updated regularly, otherwise downloads will start to fail.
+
+- **Detection:** on startup, the app compares the loaded yt-dlp version against the latest on PyPI
+- **Installation:** on confirmation, the updated yt-dlp is extracted into the user directory; it is loaded automatically on the next launch
+- **Works in both distributions** (Python mode and EXE)
+- **No admin rights required**
+- **Toggle in the About dialog**
+- **Rollback** via "Remove override"
+
+---
+
+## Building the EXE
 
 ### Windows
 ```bat
 build.bat
 ```
 
-Was passiert:
-1. `.venv` wird angelegt (falls noch nicht da)
-2. **ffmpeg wird automatisch heruntergeladen** (LGPL-Build von BtbN, ~50 MB Download).
-   Wird im Ordner `ffmpeg-bundled/` zwischengespeichert; bei späteren Builds nicht erneut geladen.
-3. PyInstaller baut zwei EXEs (DE + EN) mit allen Komponenten inkl. ffmpeg
-4. Ergebnis:
+What happens:
+1. A `.venv` is created (if not already present)
+2. **ffmpeg is downloaded automatically** (LGPL build by BtbN, ~50 MB download).
+   It is cached in the `ffmpeg-bundled/` folder; subsequent builds skip the download.
+3. PyInstaller builds two EXEs (DE + EN) including all components and ffmpeg
+4. Result:
    - `dist\YouTubeAudioDownloader-DE.exe`
    - `dist\YouTubeAudioDownloader-EN.exe`
 
-Wenn der ffmpeg-Download fehlschlägt (z. B. kein Internet), läuft der Build
-trotzdem durch — die EXE braucht dann ein externes ffmpeg im selben Ordner.
+If the ffmpeg download fails (e.g. no internet), the build still completes —
+but the resulting EXE then needs an external ffmpeg in the same folder.
 
 ### Linux
 ```bash
 ./build.sh
 ```
-Lädt statischen ffmpeg-Build von johnvansickle.com und bündelt ihn analog.
+Downloads a static ffmpeg build from johnvansickle.com and bundles it the same way.
 
 ---
 
-## Schnellstart (ohne Build)
+## Quick start (without building)
 
-Voraussetzungen: **Python ≥ 3.10** und **ffmpeg**.
+Requirements: **Python ≥ 3.10** and **ffmpeg**.
 
 ### Windows
 ```bat
@@ -150,18 +150,18 @@ chmod +x run.sh
 ./run.sh
 ```
 
-Beim ersten Start wird automatisch eine `.venv` angelegt und alle
-Abhängigkeiten installiert. Im Python-Modus muss ffmpeg im PATH oder
-neben dem Skript vorhanden sein (siehe unten).
+On first launch, a `.venv` is created automatically and all dependencies
+are installed. In Python mode, ffmpeg must be available in PATH or
+next to the script (see below).
 
 ---
 
-## ffmpeg manuell installieren (nur für Python-Modus oder bei Build ohne Bundle)
+## Installing ffmpeg manually (only for Python mode or builds without bundling)
 
-### Windows (portabel, ohne Admin)
-1. Statisches Build von <https://www.gyan.dev/ffmpeg/builds/> oder
-   <https://github.com/BtbN/FFmpeg-Builds> herunterladen.
-2. `ffmpeg.exe` direkt neben das Skript bzw. die EXE legen.
+### Windows (portable, no admin required)
+1. Download a static build from <https://www.gyan.dev/ffmpeg/builds/> or
+   <https://github.com/BtbN/FFmpeg-Builds>.
+2. Place `ffmpeg.exe` directly next to the script or EXE.
 
 ### Linux
 ```bash
@@ -171,24 +171,24 @@ sudo dnf install ffmpeg          # Fedora
 
 ---
 
-## Lizenz und Drittsoftware
+## License and third-party software
 
-Eigener Code steht unter der MIT-Lizenz (siehe `LICENSE`).
+The code in this repository is released under the MIT license (see `LICENSE`).
 
-Die gebündelten Drittkomponenten — insbesondere ffmpeg (LGPL-2.1) und
-yt-dlp (Unlicense) — behalten ihre jeweilige Lizenz. Details und
-Quellen-Verweise: siehe `THIRD_PARTY_LICENSES.txt`.
+The bundled third-party components — in particular ffmpeg (LGPL-2.1) and
+yt-dlp (Unlicense) — retain their respective licenses. Details and source
+references: see `THIRD_PARTY_LICENSES.txt`.
 
-**Kurz zur ffmpeg-LGPL:** Wir bündeln einen unmodifizierten LGPL-Build und
-rufen ffmpeg als externes Programm auf — d. h. ffmpeg ist nicht in den
-Anwendungs-Code linked, sondern wird per Prozess-Aufruf genutzt.
-Source-Code von ffmpeg ist über die Upstream-URL frei verfügbar.
+**Brief note on the ffmpeg LGPL:** an unmodified LGPL build is bundled and
+ffmpeg is invoked as an external process — i.e. ffmpeg is not linked into
+the application code, but called via process invocation. The ffmpeg source
+code is freely available from the upstream project.
 
 ---
 
 ## Android?
 
-Keine eigene Portierung. Empfohlen (Open Source, via F-Droid):
+No dedicated port. Recommended (Open Source, via F-Droid):
 
 - **Seal** — [github.com/JunkFood02/Seal](https://github.com/JunkFood02/Seal)
 - **YTDLnis** — [github.com/deniscerri/ytdlnis](https://github.com/deniscerri/ytdlnis)
@@ -196,44 +196,44 @@ Keine eigene Portierung. Empfohlen (Open Source, via F-Droid):
 
 ---
 
-## Rechtliches (Inhalte)
+## Legal (content)
 
-Nutzung in **eigener Verantwortung**. Empfohlen für:
+Use at your **own responsibility**. Recommended for:
 
-- Eigene Uploads
-- Inhalte unter freien Lizenzen (CC, Public Domain)
-- Inhalte, an denen du selbst Rechte hältst
+- Your own uploads
+- Content under free licenses (CC, Public Domain)
+- Content you hold the rights to
 
 ---
 
-## Projekt-Struktur
+## Project structure
 
 ```
 yt-audio-downloader/
-├── youtube_audio_downloader.py   # Hauptprogramm
-├── app_logo.py                   # Logo-Generator
-├── updater.py                    # yt-dlp Auto-Update
-├── i18n.py                       # Übersetzungen DE/EN
-├── paths.py                      # Plattformpfade
-├── build_config.py               # Build-Default-Sprache
-├── bundle_ffmpeg.py              # ffmpeg-Download für Build
+├── youtube_audio_downloader.py   # Main program
+├── app_logo.py                   # Logo generator
+├── updater.py                    # yt-dlp auto-update
+├── i18n.py                       # DE/EN translations
+├── paths.py                      # Platform-specific paths
+├── build_config.py               # Build-time default language
+├── bundle_ffmpeg.py              # ffmpeg downloader for build
 ├── requirements.txt
-├── run.bat / run.sh              # direkter Start
-├── build.bat / build.sh          # EXE-Build (mit ffmpeg-Bundling)
-├── LICENSE                       # MIT (eigener Code)
-├── THIRD_PARTY_LICENSES.txt      # Drittsoftware (ffmpeg, yt-dlp, ...)
+├── run.bat / run.sh              # Direct start
+├── build.bat / build.sh          # EXE build (with ffmpeg bundling)
+├── LICENSE                       # MIT (own code)
+├── THIRD_PARTY_LICENSES.txt      # Third-party software (ffmpeg, yt-dlp, …)
 └── README.md
 ```
 
 ---
 
-## Fehlerbehebung
+## Troubleshooting
 
-| Problem | Lösung |
+| Problem | Solution |
 |---|---|
-| HTTP 403 / Format-Fehler | „Updates suchen" im Über-Dialog → yt-dlp aktualisieren |
-| Update-Check schlägt fehl (Corporate-Proxy) | `HTTPS_PROXY`-Env-Variable setzen, oder Auto-Check deaktivieren |
-| Override macht Probleme | Über-Dialog → „Override entfernen" → neu starten |
-| Windows SmartScreen-Warnung | „Weitere Informationen" → „Trotzdem ausführen" (normal bei selbst gebauten EXEs) |
-| ffmpeg-Download im Build fehlgeschlagen | Internet prüfen; alternativ `ffmpeg.exe` manuell in `ffmpeg-bundled/` ablegen |
-| GUI startet nicht (Linux) | `sudo apt install python3-tk` |
+| HTTP 403 / format errors | "Check for updates" in the About dialog → update yt-dlp |
+| Update check fails (corporate proxy) | Set the `HTTPS_PROXY` env variable, or disable the auto-check |
+| Override causes issues | About dialog → "Remove override" → restart |
+| Windows SmartScreen warning | "More info" → "Run anyway" (normal for self-built EXEs) |
+| ffmpeg download failed during build | Check internet; alternatively place `ffmpeg.exe` manually in `ffmpeg-bundled/` |
+| GUI does not start (Linux) | `sudo apt install python3-tk` |
