@@ -5,6 +5,9 @@ GUI for downloading YouTube videos and playlists as
 
 **Author:** David Christopher Groß · **License:** MIT (see `LICENSE`)
 
+<img width="1174" height="1120" alt="image" src="https://github.com/user-attachments/assets/da0fe538-25a6-48a9-bacc-8f06495da2b9" />
+
+
 ---
 
 ## ⚠ Important note on audio quality
