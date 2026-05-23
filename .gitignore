@@ -1,0 +1,18 @@
+# Build-Artefakte
+__pycache__/
+*.pyc
+.venv/
+build/
+dist/
+*.spec
+app_icon.ico
+app_icon.png
+
+# Gebundelte Dependencies (werden vom Build-Skript heruntergeladen)
+ffmpeg-bundled/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,57 @@
+THIRD-PARTY COMPONENTS
+======================
+This software bundles the following third-party components. Each is provided
+under its own license. By using this software you accept these licenses.
+
+
+yt-dlp
+------
+Project:   https://github.com/yt-dlp/yt-dlp
+License:   The Unlicense (public domain dedication)
+Notes:     yt-dlp is included as a Python module bundled into the executable.
+           At runtime, the bundled version may be replaced by a newer one
+           that the user installs via the in-app update mechanism. Updates
+           are downloaded from the Python Package Index (PyPI).
+
+
+FFmpeg
+------
+Project:   https://ffmpeg.org/
+License:   GNU Lesser General Public License v2.1 or later (LGPL-2.1-or-later)
+Source:    https://github.com/BtbN/FFmpeg-Builds (LGPL build variant)
+Build:     The bundled FFmpeg binary is an LGPL build by BtbN. It does NOT
+           include GPL-only components such as x264, x265 or libfdk-aac.
+Notes:     The corresponding source code for the bundled FFmpeg binary is
+           available from the upstream project at https://ffmpeg.org/download.html
+           and from the BtbN build repository.
+
+           In line with LGPL §6 (using a Library), this software calls FFmpeg
+           as an external program via standard process invocation; FFmpeg is
+           not linked into the application binary. The unmodified FFmpeg
+           binary, its source, and license can be obtained from the URLs above.
+
+
+customtkinter
+-------------
+Project:   https://github.com/TomSchimansky/CustomTkinter
+License:   MIT License
+
+
+Pillow (PIL)
+------------
+Project:   https://python-pillow.org/
+License:   MIT-CMU (HPND-style permissive license)
+
+
+Python Standard Library
+-----------------------
+License:   Python Software Foundation License
+
+
+===========================================================================
+The full text of the LGPL-2.1 is available at:
+  https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+
+The full text of the Unlicense is available at:
+  https://unlicense.org/
+===========================================================================

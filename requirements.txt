@@ -1,0 +1,9 @@
+# Audio-Downloader Dependencies
+# =============================
+# yt-dlp regelmäßig updaten, da sich YouTube häufig ändert!
+yt-dlp>=2024.10.7
+customtkinter>=5.2.2
+Pillow>=10.0
+
+# Für den Build (optional, nur lokal nötig)
+# pyinstaller>=6.0
